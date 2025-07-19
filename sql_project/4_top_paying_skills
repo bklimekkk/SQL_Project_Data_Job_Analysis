@@ -1,0 +1,128 @@
+-- what are the top skills based on salary
+select skills,
+    round(avg(salary_year_avg), 0) as average_salary
+from job_postings_fact jpf
+    join skills_job_dim sjd on jpf.job_id = sjd.job_id
+    join skills_dim sd on sjd.skill_id = sd.skill_id
+where job_title_short = 'Data Analyst'
+    and salary_year_avg is not null
+group by skills
+order by average_salary desc
+limit 25;
+/*
+ [
+ {
+ "skills": "svn",
+ "average_salary": "400000"
+ },
+ {
+ "skills": "solidity",
+ "average_salary": "179000"
+ },
+ {
+ "skills": "couchbase",
+ "average_salary": "160515"
+ },
+ {
+ "skills": "datarobot",
+ "average_salary": "155486"
+ },
+ {
+ "skills": "golang",
+ "average_salary": "155000"
+ },
+ {
+ "skills": "mxnet",
+ "average_salary": "149000"
+ },
+ {
+ "skills": "dplyr",
+ "average_salary": "147633"
+ },
+ {
+ "skills": "vmware",
+ "average_salary": "147500"
+ },
+ {
+ "skills": "terraform",
+ "average_salary": "146734"
+ },
+ {
+ "skills": "twilio",
+ "average_salary": "138500"
+ },
+ {
+ "skills": "gitlab",
+ "average_salary": "134126"
+ },
+ {
+ "skills": "kafka",
+ "average_salary": "129999"
+ },
+ {
+ "skills": "puppet",
+ "average_salary": "129820"
+ },
+ {
+ "skills": "keras",
+ "average_salary": "127013"
+ },
+ {
+ "skills": "pytorch",
+ "average_salary": "125226"
+ },
+ {
+ "skills": "perl",
+ "average_salary": "124686"
+ },
+ {
+ "skills": "ansible",
+ "average_salary": "124370"
+ },
+ {
+ "skills": "hugging face",
+ "average_salary": "123950"
+ },
+ {
+ "skills": "tensorflow",
+ "average_salary": "120647"
+ },
+ {
+ "skills": "cassandra",
+ "average_salary": "118407"
+ },
+ {
+ "skills": "notion",
+ "average_salary": "118092"
+ },
+ {
+ "skills": "atlassian",
+ "average_salary": "117966"
+ },
+ {
+ "skills": "bitbucket",
+ "average_salary": "116712"
+ },
+ {
+ "skills": "airflow",
+ "average_salary": "116387"
+ },
+ {
+ "skills": "scala",
+ "average_salary": "115480"
+ }
+ ]
+ 
+ 1. Engineering & DevOps Skills Pay Off
+ Skills like Terraform, Puppet, Ansible, Kafka, Airflow, GitLab, and VMware are highly paid.
+ This shows that Data Analysts with data engineering or DevOps automation skills command higher salaries, as companies value those who can manage pipelines, infrastructure, and deployment.
+ 
+ 2. AI & Machine Learning Tools Are in Demand
+ High-paying skills include Hugging Face, Keras, TensorFlow, PyTorch, MXNet, and DataRobot.
+ There’s a clear premium on Data Analysts who work with machine learning models, especially in deep learning and NLP, even if it’s not their core role.
+ 
+ 3. Specialized or Niche Tools Drive Salaries Up
+ Less common tools like SVN, Solidity, Couchbase, and Datarobot offer top salaries.
+ This suggests that rarity of skill and domain-specific expertise (e.g., blockchain or legacy systems) can significantly boost earning potential.
+ 
+ */
